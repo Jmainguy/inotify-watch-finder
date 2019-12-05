@@ -76,6 +76,7 @@ func huntInums(inumsToHunt []string, allInumsOnFS map[string]string) {
 		for fsInum, filename := range allInumsOnFS {
 			if inum == fsInum {
 				fmt.Printf("%s\n", filename)
+				break
 			}
 		}
 	}
