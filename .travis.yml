@@ -1,0 +1,19 @@
+language: go
+addons:
+  apt:
+    packages:
+    - rpm
+env:
+  matrix:
+  - GO111MODULE="on"
+  global:
+    secure: VcIc6IZKjiMcHPRdv2CFUCW0CvBUvOyLko3zZpFEw3KNh6aGtk4c3bjHqBqgMFIhpbi71DjC/KIdxRNdRZkUsyxoNrriamJHR7Suzw0RKwvfjQ7VN0RP2cg5rRTiyuRrogjeI0aeXSnubfU2PDKUSNkATELFnerMvykZ3v409Bv29XxNkq+csQ65W5D/BE1FoHifAheF/0HDypQVve7SYyzHtvVH+lf1OSBjo5gqpKOr55e1fXKp8WyePmgXb4zCz74OZfJlNxQDy/abgNqpBBBEkboOb2n5njsjPx7WsQGH+YntMht45JukhPZFCKyrt6aZAv9aaHm6auJMxk60PohsMdExx4Js+oj/9JZFj7PRVOnHLVRWvK8wCjXBPPHRJ75BuxvoKNDErClp9lzT3d5QkVpH2FQRIBty+Na7u2OSeoWi3whmtcVMbZh8at2I4/m8C4Ab7KFfe0GqqIhdty+sVpNj4r39Qx98h+dxmmMmzsK2e6wRe82S6eoTmtGD2mJzmTyopOVJpJLRmu+Ra+A6E/2OnWrJX3aBEcIlEuK807ZGgIRJAyCD5qXNQlxmjOxkh9ZE2Lex6JbEMj4VpuZ28K8VKQnzeUrXkSBPAoiMyTkKmaHx/LxktY4VRq24LvgkYOorWCjuXk2ew/MzV+ZPNBjIFGQamKtzu4awmZc=
+install: 
+after_success: 
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: curl -sL https://git.io/goreleaser | bash
+  on:
+    tags: true
+    condition: "$TRAVIS_OS_NAME = linux"
